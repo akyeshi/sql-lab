@@ -1,0 +1,67 @@
+
+
+--- installation instruction 
+psql database engine, running DB engine is called DB server 
+
+brew install libpq 
+brew link --force libpq 
+
+psql -h hostname -U username -d databasename 
+psql 'postgresql://catcollector_owner:vpk0a8otUKfT@ep-damp-smoke-a4hghaed.us-east-1.aws.neon.tech/carmen?sslmode=require'
+\q
+
+
+\i ../path/to/file.sql   
+\h SELECT  
+
+\l          .. se created DBs
+\d          .. see created all DB tables 
+\
+
+--- terminologies 
+
+TEXT/VARCHAR ARE THE SAME 
+orphan musician not belonging to a band, 
+add constraint i.e. NOT NULL 
+ON (clause): how to join two table 
+
+foreign key constraint violation (you cannot delete a band that has an associated musician or a musician referencing it)
+
+inner join: data must exist on both side of the table to see the data in a inner join 
+left outer join: want all the data from table on the left
+  SELECT * FROM bands b LEFT JOIN musicians m ON b.id = m.band_id; 
+
+
+SELECT * FROM bands b LEFT JOIN musicians m ON b.id = band_id WHERE b.name = 'Rush' AND m.name LIKE 'J%'; 
+SELECT * FROM bands b LEFT JOIN musicians m ON b.id = band_id WHERE b.name = 'Rush' AND m.name LIKE 'J_ff%'; 
+
+UPDATE musicians SET quote = 'I love to write, it''s my first love.' WHERE name = 'Jeff Beck'; 
+DELETE FROM bands WHERE name LIKE '%Smiths'; 
+
+---
+
+Here is a list of common psql commands to interact with a PostgreSQL database:
+psql -U username -d database - Connect to a database as a specific user.
+\c database_name - Connect to a different database.
+\l - List all available databases.
+\dt - List all tables in the current database.
+\d table_name - Describe a table's schema.
+\du - List all database roles/users.
+\i /path/to/file.sql - Execute SQL commands from a file.
+SELECT * FROM table_name; - Query data from a table.
+INSERT INTO table_name VALUES (...); - Insert new data into a table.
+UPDATE table_name SET column = value WHERE condition; - Update existing data in a table.
+DELETE FROM table_name WHERE condition; - Delete rows from a table.
+CREATE DATABASE database_name; - Create a new database.
+DROP DATABASE database_name; - Delete a database.
+CREATE TABLE table_name (...); - Create a new table.
+DROP TABLE table_name; - Delete a table.
+\e - Open the current query buffer in a text editor.
+\g - Execute the current query buffer.
+\s - Display command history.
+\q - Quit the psql shell.
+These commands cover connecting, querying, modifying data, managing databases/tables, and other utility operations within the psql interface. 
+
+
+
+---
